@@ -6,20 +6,20 @@ import FormField from "./FormField";
 import { categoryFilters } from "@/constants";
 import CustomMenu from "./CustomMenu";
 import Button from "./Button";
-import { createNewProject } from "@/lib/actions";
+import { createNewProject, fetchToken } from "@/lib/actions";
 
 type Props = {
   type: string;
   session: SessionInterface;
 };
 const ProjectForm = ({ type, session }: Props) => {
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     setisSubmitting(true);
 
     const {token} = await fetchToken();
-    
+
     try{
         if(type === 'create'){
           //create project  
